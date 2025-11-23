@@ -123,18 +123,3 @@ If TensorFlow.js fails to load, ensure you are connected to the internet (CDN de
 
 ---
 
-## 📸 Screenshots
-_(Insert images such as gameplay screenshot, training charts, or comparison plots here.)_
-
----
-
-## 📜 License
-This project is released under the MIT License.
-
----
-
-## ✨ Author
-**Pranshu Kaushik**
-
----
-
