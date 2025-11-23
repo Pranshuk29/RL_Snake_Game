@@ -3,12 +3,12 @@ Reinforcement Learning Snake — Q-Learning, SARSA & DQN
 An interactive browser-based Reinforcement Learning playground that demonstrates how different RL algorithms learn to play Snake.
 This project visualizes real-time agent decisions, learning curves, exploration strategies, neural network training, and final performance comparison.
 
- Demo Showcase
+🎥 Demo Showcase
 
 (Insert your demo GIF or video here)
-![Demo](demo.gif)
+![Demo](assets/demo.gif)
 
- Project Overview
+🌟 Project Overview
 
 This project implements and compares three RL agents:
 
@@ -19,8 +19,8 @@ DQN	Deep Reinforcement Learning	Neural network, scalable, uses experience replay
 
 Each model interacts with the same environment, enabling clean comparison of learning behaviour.
 
- Visual Components
-1️. Environment (Game World)
+🧩 Visual Components
+1️⃣ Environment (Game World)
 
 ![Environment](assets/environment.png)
 
@@ -43,7 +43,7 @@ perspective(1000px) rotateX(25deg) scale(0.85)
 
 Gives the game a retro neon-arcade aesthetic.
 
-2️. State Representation (7-Bit Vector)
+2️⃣ State Representation (7-Bit Vector)
 
 ![State](assets/state.png)
 
@@ -85,7 +85,7 @@ Compared to raw pixel input (
 400
 20×20=400 values), this is 300× smaller, enabling fast, stable training in the browser.
 
-3️. Reward Mechanism (Exact Values Used)
+3️⃣ Reward Mechanism (Exact Values Used)
 
 ![Rewards](assets/rewards.png)
 
@@ -108,8 +108,8 @@ Rapid convergence
 
 Food-directed behaviour
 
- Reinforcement Learning Models
-1. Q-Learning (Off-Policy Tabular RL)
+🤖 Reinforcement Learning Models
+🟦 Q-Learning (Off-Policy Tabular RL)
 
 ![QLearning](assets/qlearning.png)
 
@@ -185,7 +185,7 @@ Sometimes takes risky paths close to walls
 
 Converges quickly due to small state space (128 states)
 
-2. SARSA (On-Policy Tabular RL)
+🟩 SARSA (On-Policy Tabular RL)
 
 ![SARSA](assets/sarsa.png)
 
@@ -243,7 +243,7 @@ Avoids edge-clinging policies
 
 More stable early gameplay
 
-3. Deep Q-Network (DQN)
+🟥 Deep Q-Network (DQN)
 
 ![DQN](assets/dqn.png)
 
@@ -308,7 +308,7 @@ Becomes smoother over time
 
 More scalable for larger grids (e.g., 100×100)
 
- Training Workflow
+🔄 Training Workflow
 
 ![Training Pipeline](assets/pipeline.png)
 
@@ -359,7 +359,7 @@ Step 5 — Chart Update
 
 Graphs update for score, rewards, and (for DQN) loss.
 
- Performance Visualization
+📊 Performance Visualization
 1. Score Progression
 
 ![Scores](assets/scores.png)
@@ -384,7 +384,7 @@ DQN → slow but powerful
 
 Demonstrates convergence of the neural network.
 
- User Interface Preview
+🎮 User Interface Preview
 
 ![UI](assets/ui.png)
 
@@ -400,7 +400,7 @@ Live charts
 
 Lock & Compare mode
 
- Use Cases
+🧪 Use Cases
 
 Perfect for:
 
@@ -430,7 +430,7 @@ Chart Manager
 
 Visual Renderer
 
- Future Enhancements
+🚀 Future Enhancements
 
 Double DQN
 
