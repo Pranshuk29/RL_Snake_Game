@@ -4,7 +4,7 @@ An interactive browser-based playground demonstrating how different reinforcemen
 
 ## Demo
 
-![Demo](assets/demo.gif)
+![Demo](demo.mp4)
 
 ## Project Overview
 
@@ -43,8 +43,6 @@ Each agent receives a compact 7-bit binary feature vector:
 
 **State Space Efficiency**: With 2^7 = 128 possible states, this representation is 300× smaller than raw pixel input (400 values), enabling rapid browser-based training while maintaining sufficient information for effective learning.
 
-![State](assets/state.png)
-
 ## Reward Structure
 
 | Event | Reward Value |
@@ -75,7 +73,7 @@ Q(S,A) ← Q(S,A) + α[R + γ max_a Q(S',a) - Q(S,A)]
 
 **Behavior**: Fast learning with greedy action selection. Often takes risky paths near walls but converges quickly due to the small state space.
 
-![Q-Learning](assets/qlearning.png)
+![Q-Learning](q_learning.png)
 
 ### SARSA (On-Policy)
 
@@ -87,7 +85,7 @@ Q(S,A) ← Q(S,A) + α[R + γ Q(S',A') - Q(S,A)]
 
 **Key Difference**: SARSA learns the value of its actual behavior policy, not the optimal hypothetical policy. This results in naturally safer strategies, better wall avoidance, and more stable early-stage performance.
 
-![SARSA](assets/sarsa.png)
+![SARSA](SARSA.png)
 
 ### Deep Q-Network (DQN)
 
@@ -139,7 +137,7 @@ Each episode follows this workflow:
 ### Score Progression
 Tracks learning speed and policy stability across episodes.
 
-![Scores](assets/scores.png)
+![Scores](scores.png)
 
 ### Average Reward Comparison
 Typical patterns:
