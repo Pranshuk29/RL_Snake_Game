@@ -27,7 +27,7 @@ All three agents interact with an identical environment, enabling direct compari
 - **Coordinate System**: (0,0) at top-left → (19,19) at bottom-right
 - **Visual Style**: 3D perspective using CSS transforms (`perspective(1000px) rotateX(25deg)`) for a retro arcade aesthetic
 
-![Environment](assets/environment.png)
+![Environment](grid.png)
 
 ## State Representation
 
@@ -54,8 +54,6 @@ Each agent receives a compact 7-bit binary feature vector:
 | Move Away from Food | -0.6 |
 
 This reward shaping encourages efficient navigation, strategic planning, loop avoidance, and food-directed movement.
-
-![Rewards](assets/rewards.png)
 
 ## Algorithm Implementations
 
@@ -112,7 +110,7 @@ where y = R + γ max Q(s',a')
 
 **Behavior**: Slower initial learning but smoother long-term performance. More scalable for larger grid sizes.
 
-![DQN](assets/dqn.png)
+![DQN](dqn.png)
 
 ## Training Pipeline
 
@@ -130,8 +128,6 @@ Each episode follows this workflow:
    - DQN: Neural network gradient descent with experience replay
 5. **Visualization**: Update performance charts in real-time
 
-![Training Pipeline](assets/pipeline.png)
-
 ## Performance Metrics
 
 ### Score Progression
@@ -145,16 +141,12 @@ Typical patterns:
 - SARSA: Smooth and consistent growth
 - DQN: Gradual but powerful learning
 
-![Reward Graph](assets/reward_graph.png)
-
 ### DQN Loss Curve
 Demonstrates neural network convergence during training.
 
-![Loss](assets/loss.png)
-
 ## User Interface
 
-![UI](assets/ui.png)
+![UI](q_learning.png)
 
 Features include:
 - Model selector dropdown
@@ -173,8 +165,6 @@ This project is useful for:
 - Browser-based RL experimentation without setup requirements
 
 ## Project Structure
-
-![Folders](assets/folders.png)
 
 Core components:
 - Game Engine: Environment logic and physics
