@@ -4,7 +4,7 @@ An interactive browser-based playground demonstrating how different reinforcemen
 
 ## Demo
 
-![Demo](demo.mp4)
+![Demo](demo-ezgif.com-video-to-gif-converter.gif)
 
 ## Project Overview
 
