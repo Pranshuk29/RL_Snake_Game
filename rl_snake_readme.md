@@ -2,6 +2,17 @@
 
 An interactive browser-based playground demonstrating how different reinforcement learning algorithms learn to play Snake. This project provides real-time visualization of agent decisions, learning curves, exploration strategies, and performance comparisons.
 
+## User Interface
+
+![UI](q_learning.png)
+
+Features include:
+- Model selector dropdown
+- Speed controls (Normal, Fast, Hyper)
+- Episode counter and statistics
+- Live performance charts
+- Lock & Compare mode for multi-agent analysis
+
 ## Demo
 
 ![Demo](demo-ezgif.com-video-to-gif-converter.gif)
@@ -141,20 +152,6 @@ Typical patterns:
 - SARSA: Smooth and consistent growth
 - DQN: Gradual but powerful learning
 
-### DQN Loss Curve
-Demonstrates neural network convergence during training.
-
-## User Interface
-
-![UI](q_learning.png)
-
-Features include:
-- Model selector dropdown
-- Speed controls (Normal, Fast, Hyper)
-- Episode counter and statistics
-- Live performance charts
-- Lock & Compare mode for multi-agent analysis
-
 ## Applications
 
 This project is useful for:
@@ -172,13 +169,3 @@ Core components:
 - Replay Memory: Experience buffer for DQN
 - UI Controls: User interaction handlers
 - Chart Manager: Real-time visualization updates
-- Visual Renderer: Canvas-based graphics
-
-## Future Work
-
-Potential enhancements:
-- Double DQN to reduce overestimation bias
-- Dueling network architectures
-- Prioritized experience replay
-- Convolutional state representations for pixel-based input
-- Multi-agent competitive modes
