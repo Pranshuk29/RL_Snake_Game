@@ -1,125 +1,443 @@
-# 🐍 Neon Snake RL
-A browser-based Reinforcement Learning (RL) playground that visualizes how different AI agents learn to play the classic Snake game in real time. The project compares **Q-Learning**, **SARSA**, and **Deep Q-Network (DQN)** using an interactive training environment built entirely with web technologies.
+Reinforcement Learning Snake — Q-Learning, SARSA & DQN
 
----
+An interactive browser-based Reinforcement Learning playground that demonstrates how different RL algorithms learn to play Snake.
+This project visualizes real-time agent decisions, learning curves, exploration strategies, neural network training, and final performance comparison.
 
-## 🚀 Features
-- **Real-Time Training Visualization**  
-  Watch agents learn from random behavior to strategic gameplay.
-  
-- **Multiple Algorithms**
-  - Q-Learning (Off-Policy)
-  - SARSA (On-Policy)
-  - DQN (TensorFlow.js)
+🎥 Demo Showcase
 
-- **3D Neon Game Board**  
-  Custom CSS with 3D transforms (`perspective`, `rotateX`) for a retro arcade look.
+(Insert your demo GIF or video here)
+![Demo](assets/demo.gif)
 
-- **Dynamic Learning Charts**  
-  Performance tracked live using Chart.js.
+🌟 Project Overview
 
-- **Speed Modes**
-  - Normal
-  - Fast
-  - Hyper (skips rendering for maximum RL speed)
+This project implements and compares three RL agents:
 
-- **Comparison Mode**
-  Lock completed runs and compare multiple algorithms visually.
+Model	Type	Characteristics
+Q-Learning	Off-policy Tabular RL	Fast, aggressive, converges to optimal but riskier policies
+SARSA	On-policy Tabular RL	Safer, stable, avoids walls naturally
+DQN	Deep Reinforcement Learning	Neural network, scalable, uses experience replay
 
----
+Each model interacts with the same environment, enabling clean comparison of learning behaviour.
 
-## 🧠 State Representation
-Each agent receives a **7-dimensional binary state vector** instead of the full grid:
+🧩 Visual Components
+1️⃣ Environment (Game World)
 
-1. Danger Straight  
-2. Danger Left  
-3. Danger Right  
-4. Food Up  
-5. Food Down  
-6. Food Left  
-7. Food Right
+![Environment](assets/environment.png)
 
-This compact state space allows tabular RL to learn efficiently.
+Grid Specifications
 
----
+Grid Size: 
+20
+×
+20
+20×20 (400 cells)
 
-## 🎯 Reward Shaping
-| Event                     | Reward |
-|--------------------------|--------|
-| Eat Food                 | +50    |
-| Crash (wall/self)        | -50    |
-| Step Penalty             | -0.1   |
-| Move towards food        | +0.5   |
-| Move away from food      | -0.6   |
+Action Space: Discrete(4) → [Up, Down, Left, Right]
 
----
+Coordinate System: (0,0) top-left → (19,19) bottom-right
 
-## 🧪 Algorithms
+3D Perspective
 
-### **Q-Learning**
-- Off-policy  
-- Greedy updates using:  
-  `max(Q(s', a'))`  
-- Learns fast but risk-seeking.
+Uses CSS transforms:
+perspective(1000px) rotateX(25deg) scale(0.85)
 
-### **SARSA**
-- On-policy  
-- Updates using actual next action:  
-  `Q(s', a')`  
-- More conservative and safer.
+Gives the game a retro neon-arcade aesthetic.
 
-### **Deep Q-Network (DQN)**
-- TensorFlow.js neural network  
-- Architecture: `7 → 24 → 24 → 4`  
-- Uses Experience Replay for stable learning.
+2️⃣ State Representation (7-Bit Vector)
 
----
+![State](assets/state.png)
 
-## 📊 How to Run Experiments
-1. Select an algorithm using the UI.  
-2. Set speed (Hyper recommended).  
-3. Click **Start** and let it train for 100–200 episodes.  
-4. Click **Lock Run** to freeze the line.  
-5. Repeat for other algorithms.  
-6. Export comparison chart (PNG) using the download button.
+Each agent receives a 7-binary-feature state vector:
 
----
+Danger Straight
 
-## 🛠️ Tech Stack
-- **HTML5**
-- **Tailwind CSS** + custom CSS for 3D effects
-- **Vanilla JavaScript (ES6+)**
-- **TensorFlow.js** (for DQN)
-- **Chart.js** (learning visualization)
-- **Web Audio API** (sound effects)
+Danger Left
 
----
+Danger Right
 
-## 📁 Project Structure
-/index.html
-/style.css
-/game/
-SnakeGame.js
-Renderer.js
-Controls.js
-agents/
-BaseAgent.js
-QLearningAgent.js
-SarsaAgent.js
-DQNAgent.js
-charts/
-ChartManager.js
-assets/
-icons/
-README.md
+Food Up
 
+Food Down
 
----
+Food Left
 
-## ▶️ Running the Project
-Just open **index.html** in any modern browser—no backend or setup required.
+Food Right
 
-If TensorFlow.js fails to load, ensure you are connected to the internet (CDN dependency).
+State Space Efficiency
 
----
+Input Vector Size: 7
 
+Total Possible State Combinations:
+
+2
+7
+=
+128
+2
+7
+=128
+
+Compared to raw pixel input (
+20
+×
+20
+=
+400
+20×20=400 values), this is 300× smaller, enabling fast, stable training in the browser.
+
+3️⃣ Reward Mechanism (Exact Values Used)
+
+![Rewards](assets/rewards.png)
+
+Event	Reward
+Eat Food	+50
+Collision (Wall/Self)	−50
+Living Penalty	−0.1 per step
+Move Closer to Food	+0.5
+Move Away from Food	−0.6
+
+This reward shaping encourages:
+
+Efficient movement
+
+Strategic navigation
+
+Avoidance of loops
+
+Rapid convergence
+
+Food-directed behaviour
+
+🤖 Reinforcement Learning Models
+🟦 Q-Learning (Off-Policy Tabular RL)
+
+![QLearning](assets/qlearning.png)
+
+Q-Learning updates using the Bellman Optimality Equation:
+
+𝑄
+(
+𝑆
+,
+𝐴
+)
+←
+𝑄
+(
+𝑆
+,
+𝐴
+)
++
+𝛼
+[
+𝑅
++
+𝛾
+max
+⁡
+𝑎
+𝑄
+(
+𝑆
+′
+,
+𝑎
+)
+−
+𝑄
+(
+𝑆
+,
+𝐴
+)
+]
+Q(S,A)←Q(S,A)+α[R+γ
+a
+max
+	​
+
+Q(S
+′
+,a)−Q(S,A)]
+
+Hyperparameters
+
+Learning Rate 
+𝛼
+=
+0.1
+α=0.1
+
+Discount Factor 
+𝛾
+=
+0.9
+γ=0.9
+
+Behaviour
+
+Fast learning
+
+Greedy & aggressive
+
+Sometimes takes risky paths close to walls
+
+Converges quickly due to small state space (128 states)
+
+🟩 SARSA (On-Policy Tabular RL)
+
+![SARSA](assets/sarsa.png)
+
+SARSA updates using the actual next action taken:
+
+𝑄
+(
+𝑆
+,
+𝐴
+)
+←
+𝑄
+(
+𝑆
+,
+𝐴
+)
++
+𝛼
+[
+𝑅
++
+𝛾
+𝑄
+(
+𝑆
+′
+,
+𝐴
+′
+)
+−
+𝑄
+(
+𝑆
+,
+𝐴
+)
+]
+Q(S,A)←Q(S,A)+α[R+γQ(S
+′
+,A
+′
+)−Q(S,A)]
+
+Key Insight
+SARSA learns the value of its real behavior, not the optimal hypothetical one.
+
+Risk Profile
+
+Naturally safer
+
+Avoids edge-clinging policies
+
+More stable early gameplay
+
+🟥 Deep Q-Network (DQN)
+
+![DQN](assets/dqn.png)
+
+Neural Network Architecture
+Layer	Units	Activation
+Input	7	—
+Hidden 1	24	ReLU
+Hidden 2	24	ReLU
+Output	4	Linear
+Loss Function (Mean Squared Error)
+𝐿
+=
+(
+𝑦
+−
+𝑄
+(
+𝑠
+,
+𝑎
+)
+)
+2
+L=(y−Q(s,a))
+2
+
+Where:
+
+𝑦
+=
+𝑅
++
+𝛾
+max
+⁡
+𝑄
+(
+𝑠
+′
+,
+𝑎
+′
+)
+y=R+γmaxQ(s
+′
+,a
+′
+)
+Experience Replay
+
+Replay Buffer: 2000 transitions
+
+Batch Size: 32 samples
+
+Randomized training breaks correlation between consecutive states → stabilizing learning.
+
+Behaviour
+
+Learns slower initially
+
+Becomes smoother over time
+
+More scalable for larger grids (e.g., 100×100)
+
+🔄 Training Workflow
+
+![Training Pipeline](assets/pipeline.png)
+
+Each episode follows:
+
+Step 1 — Observe State
+
+Extract 7-bit state vector.
+
+Step 2 — Choose Action (Epsilon-Greedy)
+
+Exploration Strategy
+
+Initial Epsilon 
+𝜖
+=
+1.0
+ϵ=1.0 (100% random)
+
+Decay each episode:
+
+𝜖
+←
+𝜖
+×
+0.995
+ϵ←ϵ×0.995
+
+Minimum 
+𝜖
+=
+0.01
+ϵ=0.01
+
+Step 3 — Environment Responds
+
+Reward + new state + done flag.
+
+Step 4 — Update Model
+
+Q-Learning uses max future Q
+
+SARSA uses actual future action
+
+DQN uses neural network optimization
+
+Step 5 — Chart Update
+
+Graphs update for score, rewards, and (for DQN) loss.
+
+📊 Performance Visualization
+1. Score Progression
+
+![Scores](assets/scores.png)
+
+Shows learning speed and stability.
+
+2. Average Reward Comparison
+
+![Reward](assets/reward_graph.png)
+
+Usually:
+
+Q-Learning → fastest rise
+
+SARSA → smooth & safe
+
+DQN → slow but powerful
+
+3. DQN Loss Curve
+
+![Loss](assets/loss.png)
+
+Demonstrates convergence of the neural network.
+
+🎮 User Interface Preview
+
+![UI](assets/ui.png)
+
+Includes:
+
+Model selector
+
+Speed modes (Normal, Fast, Hyper)
+
+Episode counter
+
+Live charts
+
+Lock & Compare mode
+
+🧪 Use Cases
+
+Perfect for:
+
+RL education and demonstrations
+
+Comparing on-policy vs. off-policy learning
+
+Understanding exploration decay
+
+Visualising neural network training in the browser
+
+🧭 Project Structure Overview
+
+![Folders](assets/folders.png)
+
+Conceptual components:
+
+Game Engine
+
+Agents (Q-Learning, SARSA, DQN)
+
+Replay Memory
+
+UI / Controls
+
+Chart Manager
+
+Visual Renderer
+
+🚀 Future Enhancements
+
+Double DQN
+
+Dueling Networks
+
+Prioritized Replay
+
+Convolutional input states
+
+Multi-agent competition
